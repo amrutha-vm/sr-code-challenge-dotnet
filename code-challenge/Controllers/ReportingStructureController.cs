@@ -25,7 +25,7 @@ namespace challenge.Controllers
         }
 
         [HttpGet("{id}", Name = "getReportingStructureById")]
-        public IActionResult getReportingStructureById(String id)
+        public IActionResult GetReportingStructureById(String id)
         {
             _logger.LogDebug($"Received employee get request for '{id}'");
 

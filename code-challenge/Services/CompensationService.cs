@@ -32,9 +32,6 @@ namespace challenge.Services
                 return compensation;
             }
             return null;
-            //if (compensation == null) {
-            //    compensation = new Compensation() { }
-            //}
         }
 
         public Compensation createCompensation(Compensation compensation)
