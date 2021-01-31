@@ -12,7 +12,6 @@ namespace challenge.Data
     {
         private EmployeeContext _employeeContext;
         private const String EMPLOYEE_SEED_DATA_FILE = "resources/EmployeeSeedData.json";
-        private const String COMPENSATION_SEED_DATA_FILE = "resources/CompensationSeedData.json";
 
         public EmployeeDataSeeder(EmployeeContext employeeContext)
         {
@@ -24,7 +23,7 @@ namespace challenge.Data
             if(!_employeeContext.Employees.Any())
             {
                 List<Employee> employees = LoadEmployees();
-                List<Compensation> compensations = LoadCompensations();
+                List<Compensation> compensations = new List<Compensation>();
                
                 _employeeContext.Employees.AddRange(employees);
                 _employeeContext.Compensations.AddRange(compensations);
@@ -68,20 +67,6 @@ namespace challenge.Data
                     employee.DirectReports = referencedEmployees;
                 }
             });
-        }
-
-        private List<Compensation> LoadCompensations()
-        {
-            using (FileStream fs = new FileStream(COMPENSATION_SEED_DATA_FILE, FileMode.Open))
-            using (StreamReader sr = new StreamReader(fs))
-            using (JsonReader jr = new JsonTextReader(sr))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-
-                List<Compensation> compesations = serializer.Deserialize<List<Compensation>>(jr);
-
-                return compesations;
-            }
         }
     }
 }
